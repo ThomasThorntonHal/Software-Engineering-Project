@@ -77,37 +77,37 @@ void place_tokens(square board[NUM_ROWS][NUM_COLUMNS], player players[], int num
 	int minNumOfTokens = 0;
     int selectedSquare = 0;
 	
-	for(int i=0; i<4; i++){
-		for(int j=0; j<numPlayers; j++){
-			printf("%s please select a square\n", players[j].name);
-			scanf("%d", &selectedSquare);
+	for(int i=0; i<4; i++){ //stay in loop until players have placed all their tokens
+		for(int j=0; j<numPlayers; j++){//stay in the loop untill all players have placed their token
+			printf("%s please select a square\n", players[j].name);//tell player to choose a square
+			scanf("%d", &selectedSquare);//read in selected square
 			
 			if(minNumOfTokens == 0){
-				if(board[selectedSquare][0].numTokens > minNumOfTokens){
+				if(board[selectedSquare][0].numTokens > minNumOfTokens){//check that all rows are filled
 					printf("\nInvalid square. Cannot place a token until all rows are filled\n");
-					j--;//make this player stay in the loop until they pick a valid square
+					j--; //make this player stay in the loop until they pick a valid square
 				}
 				else{
-					board[selectedSquare][0].stack = push(players[j].col, board[selectedSquare][0].stack,  &board[selectedSquare][0].numTokens);
+					board[selectedSquare][0].stack = push(players[j].col, board[selectedSquare][0].stack,  &board[selectedSquare][0].numTokens);//add token using push
 					print_board(board);
 					if(((numPlayers * i) + j + 1)%NUM_ROWS == 0)
-						minNumOfTokens++;
+						minNumOfTokens++;//increase minNumOfTokens when all 6 rows are filled
 				}
 			}
 			else if(minNumOfTokens > 0){
-				if(board[selectedSquare][0].numTokens > minNumOfTokens){
+				if(board[selectedSquare][0].numTokens > minNumOfTokens){//check if all rows are filled
 					printf("\n\nInvalid square. Cannot place a token until all rows are filled\n\n");
-					j--;//make this player stay in the loop until they pick a valid square
+					j--; //make this player stay in the loop until they pick a valid square
 				}
-				else if((board[selectedSquare][0].stack->col) == players[j].col){
+				else if((board[selectedSquare][0].stack->col) == players[j].col){//check if they're trying to add token on token of same colour
 					printf("\n\nInvalid square. Cannot place token on top of token of same colour\n\n");
-					j--;
+					j--; //make this player stay in the loop until they pick a valid square
 				}
 				else{
-					board[selectedSquare][0].stack = push(players[j].col, board[selectedSquare][0].stack,  &board[selectedSquare][0].numTokens);
+					board[selectedSquare][0].stack = push(players[j].col, board[selectedSquare][0].stack,  &board[selectedSquare][0].numTokens);//add token using push
 					print_board(board);
 					if(((numPlayers * i) + j + 1)%NUM_ROWS == 0)
-						minNumOfTokens++;
+						minNumOfTokens++;//increase minNumOfTokens when all 6 rows are filled
 				}
 			}
 		}
@@ -137,7 +137,7 @@ void play_game(square board[NUM_ROWS][NUM_COLUMNS], player players[], int numPla
 				if(board[roll][q].numTokens != 0)
 					found = 1;
 			}
-			if(found == 1//if there are tokens in that row do this
+			if(found == 1)//if there are tokens in that row do this
 				choice = 0;//clear any previous choice
 				printf("\nDo you want to move one of your tokens up or down?\n1 for Yes\n2 for No\n");
 				scanf("%d", &choice);//read in choice
