@@ -1,2 +1,0 @@
-# COMP10050
-howdy# COMP10050
