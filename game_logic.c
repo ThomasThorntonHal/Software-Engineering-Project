@@ -137,7 +137,7 @@ void play_game(square board[NUM_ROWS][NUM_COLUMNS], player players[], int numPla
 				if(board[roll][q].numTokens != 0)
 					found = 1;
 			}
-			if(found == 1)//if there are tokens in that row do this
+			if(found == 1){//if there are tokens in that row do this
 				choice = 0;//clear any previous choice
 				printf("\nDo you want to move one of your tokens up or down?\n1 for Yes\n2 for No\n");
 				scanf("%d", &choice);//read in choice
